@@ -1,0 +1,93 @@
+b'&&&& RUNNING TensorRT.trtexec # trtexec --onnx=./models/dmpr_model.onnx --avgRuns=30
+[11/19/2020-18:22:39] [I] === Model Options ===
+[11/19/2020-18:22:39] [I] Format: ONNX
+[11/19/2020-18:22:39] [I] Model: ./models/dmpr_model.onnx
+[11/19/2020-18:22:39] [I] Output:
+[11/19/2020-18:22:39] [I] === Build Options ===
+[11/19/2020-18:22:39] [I] Max batch: 1
+[11/19/2020-18:22:39] [I] Workspace: 16 MB
+[11/19/2020-18:22:39] [I] minTiming: 1
+[11/19/2020-18:22:39] [I] avgTiming: 8
+[11/19/2020-18:22:39] [I] Precision: FP32
+[11/19/2020-18:22:39] [I] Calibration: 
+[11/19/2020-18:22:39] [I] Safe mode: Disabled
+[11/19/2020-18:22:39] [I] Save engine: 
+[11/19/2020-18:22:39] [I] Load engine: 
+[11/19/2020-18:22:39] [I] Builder Cache: Enabled
+[11/19/2020-18:22:39] [I] NVTX verbosity: 0
+[11/19/2020-18:22:39] [I] Inputs format: fp32:CHW
+[11/19/2020-18:22:39] [I] Outputs format: fp32:CHW
+[11/19/2020-18:22:39] [I] Input build shapes: model
+[11/19/2020-18:22:39] [I] Input calibration shapes: model
+[11/19/2020-18:22:39] [I] === System Options ===
+[11/19/2020-18:22:39] [I] Device: 0
+[11/19/2020-18:22:39] [I] DLACore: 
+[11/19/2020-18:22:39] [I] Plugins:
+[11/19/2020-18:22:39] [I] === Inference Options ===
+[11/19/2020-18:22:39] [I] Batch: 1
+[11/19/2020-18:22:39] [I] Input inference shapes: model
+[11/19/2020-18:22:39] [I] Iterations: 10
+[11/19/2020-18:22:39] [I] Duration: 3s (+ 200ms warm up)
+[11/19/2020-18:22:39] [I] Sleep time: 0ms
+[11/19/2020-18:22:39] [I] Streams: 1
+[11/19/2020-18:22:39] [I] ExposeDMA: Disabled
+[11/19/2020-18:22:39] [I] Spin-wait: Disabled
+[11/19/2020-18:22:39] [I] Multithreading: Disabled
+[11/19/2020-18:22:39] [I] CUDA Graph: Disabled
+[11/19/2020-18:22:39] [I] Skip inference: Disabled
+[11/19/2020-18:22:39] [I] Inputs:
+[11/19/2020-18:22:39] [I] === Reporting Options ===
+[11/19/2020-18:22:39] [I] Verbose: Disabled
+[11/19/2020-18:22:39] [I] Averages: 30 inferences
+[11/19/2020-18:22:39] [I] Percentile: 99
+[11/19/2020-18:22:39] [I] Dump output: Disabled
+[11/19/2020-18:22:39] [I] Profile: Disabled
+[11/19/2020-18:22:39] [I] Export timing to JSON file: 
+[11/19/2020-18:22:39] [I] Export output to JSON file: 
+[11/19/2020-18:22:39] [I] Export profile to JSON file: 
+[11/19/2020-18:22:39] [I] 
+----------------------------------------------------------------
+Input filename:   ./models/dmpr_model.onnx
+ONNX IR version:  0.0.4
+Opset version:    9
+Producer name:    pytorch
+Producer version: 1.2
+Domain:           
+Model version:    0
+Doc string:       
+----------------------------------------------------------------
+[11/19/2020-18:22:40] [11/19/2020-18:22:40] [I] [TRT] 
+[11/19/2020-18:22:40] [I] [TRT] --------------- Layers running on DLA: 
+[11/19/2020-18:22:40] [I] [TRT] 
+[11/19/2020-18:22:40] [I] [TRT] --------------- Layers running on GPU: 
+[11/19/2020-18:22:40] [I] [TRT] (Unnamed Layer* 0) [Convolution], (Unnamed Layer* 2) [Activation], (Unnamed Layer* 3) [Convolution], (Unnamed Layer* 5) [Activation], (Unnamed Layer* 6) [Convolution], (Unnamed Layer* 8) [Activation], (Unnamed Layer* 9) [Convolution], (Unnamed Layer* 11) [Activation], (Unnamed Layer* 12) [Convolution], (Unnamed Layer* 14) [Activation], (Unnamed Layer* 15) [Convolution], (Unnamed Layer* 17) [Activation], (Unnamed Layer* 18) [Convolution], (Unnamed Layer* 20) [Activation], (Unnamed Layer* 21) [Convolution], (Unnamed Layer* 23) [Activation], (Unnamed Layer* 24) [Convolution], (Unnamed Layer* 26) [Activation], (Unnamed Layer* 27) [Convolution], (Unnamed Layer* 29) [Activation], (Unnamed Layer* 30) [Convolution], (Unnamed Layer* 32) [Activation], (Unnamed Layer* 33) [Convolution], (Unnamed Layer* 35) [Activation], (Unnamed Layer* 36) [Convolution], (Unnamed Layer* 38) [Activation], (Unnamed Layer* 39) [Convolution], (Unnamed Layer* 41) [Activation], (Unnamed Layer* 42) [Convolution], (Unnamed Layer* 44) [Activation], (Unnamed Layer* 45) [Convolution], (Unnamed Layer* 47) [Activation], (Unnamed Layer* 48) [Convolution], (Unnamed Layer* 50) [Activation], (Unnamed Layer* 51) [Convolution], (Unnamed Layer* 53) [Activation], (Unnamed Layer* 54) [Convolution], (Unnamed Layer* 56) [Activation], (Unnamed Layer* 57) [Convolution], (Unnamed Layer* 59) [Activation], (Unnamed Layer* 60) [Convolution], (Unnamed Layer* 62) [Activation], (Unnamed Layer* 63) [Convolution], (Unnamed Layer* 65) [Activation], (Unnamed Layer* 66) [Convolution], (Unnamed Layer* 68) [Activation], (Unnamed Layer* 69) [Convolution], (Unnamed Layer* 71) [Activation], (Unnamed Layer* 72) [Convolution], (Unnamed Layer* 74) [Slice], (Unnamed Layer* 76) [Activation], (Unnamed Layer* 73) [Slice], (Unnamed Layer* 75) [Activation], 
+[11/19/2020-18:22:43] [I] [TRT] Some tactics do not have sufficient workspace memory to run. Increasing workspace size may increase performance, please check verbose output.
+[11/19/2020-18:23:41] [I] [TRT] Detected 1 inputs and 3 output network tensors.
+[11/19/2020-18:23:41] [I] Starting inference threads
+[11/19/2020-18:23:44] [I] Warmup completed 7 queries over 200 ms
+[11/19/2020-18:23:44] [I] Timing trace has 102 queries over 3.06383 s
+[11/19/2020-18:23:44] [I] Trace averages of 30 runs:
+[11/19/2020-18:23:44] [I] Average on 30 runs - GPU latency: 30.0516 ms - Host latency: 30.1447 ms (end to end 30.1523 ms, enqueue 0.619653 ms)
+[11/19/2020-18:23:44] [I] Average on 30 runs - GPU latency: 29.8777 ms - Host latency: 29.9689 ms (end to end 29.9767 ms, enqueue 0.618567 ms)
+[11/19/2020-18:23:44] [I] Average on 30 runs - GPU latency: 29.8798 ms - Host latency: 29.971 ms (end to end 29.98 ms, enqueue 0.604964 ms)
+[11/19/2020-18:23:44] [I] Host Latency
+[11/19/2020-18:23:44] [I] min: 29.7058 ms (end to end 29.7151 ms)
+[11/19/2020-18:23:44] [I] max: 31.9177 ms (end to end 31.9244 ms)
+[11/19/2020-18:23:44] [I] mean: 30.0293 ms (end to end 30.0375 ms)
+[11/19/2020-18:23:44] [I] median: 29.9489 ms (end to end 29.9583 ms)
+[11/19/2020-18:23:44] [I] percentile: 31.8475 ms at 99% (end to end 31.8532 ms at 99%)
+[11/19/2020-18:23:44] [I] throughput: 33.2916 qps
+[11/19/2020-18:23:44] [I] walltime: 3.06383 s
+[11/19/2020-18:23:44] [I] Enqueue Time
+[11/19/2020-18:23:44] [I] min: 0.531921 ms
+[11/19/2020-18:23:44] [I] max: 0.862671 ms
+[11/19/2020-18:23:44] [I] median: 0.598267 ms
+[11/19/2020-18:23:44] [I] GPU Compute
+[11/19/2020-18:23:44] [I] min: 29.6156 ms
+[11/19/2020-18:23:44] [I] max: 31.8237 ms
+[11/19/2020-18:23:44] [I] mean: 29.9375 ms
+[11/19/2020-18:23:44] [I] median: 29.8571 ms
+[11/19/2020-18:23:44] [I] percentile: 31.7549 ms at 99%
+[11/19/2020-18:23:44] [I] total compute time: 3.05363 s
+&&&& PASSED TensorRT.trtexec # trtexec --onnx=./models/dmpr_model.onnx --avgRuns=30
+'

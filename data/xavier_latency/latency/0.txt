@@ -1,0 +1,155 @@
+b'&&&& RUNNING TensorRT.trtexec # trtexec --onnx=./models/0.onnx --avgRuns=30
+[11/19/2020-18:17:51] [I] === Model Options ===
+[11/19/2020-18:17:51] [I] Format: ONNX
+[11/19/2020-18:17:51] [I] Model: ./models/0.onnx
+[11/19/2020-18:17:51] [I] Output:
+[11/19/2020-18:17:51] [I] === Build Options ===
+[11/19/2020-18:17:51] [I] Max batch: 1
+[11/19/2020-18:17:51] [I] Workspace: 16 MB
+[11/19/2020-18:17:51] [I] minTiming: 1
+[11/19/2020-18:17:51] [I] avgTiming: 8
+[11/19/2020-18:17:51] [I] Precision: FP32
+[11/19/2020-18:17:51] [I] Calibration: 
+[11/19/2020-18:17:51] [I] Safe mode: Disabled
+[11/19/2020-18:17:51] [I] Save engine: 
+[11/19/2020-18:17:51] [I] Load engine: 
+[11/19/2020-18:17:51] [I] Builder Cache: Enabled
+[11/19/2020-18:17:51] [I] NVTX verbosity: 0
+[11/19/2020-18:17:51] [I] Inputs format: fp32:CHW
+[11/19/2020-18:17:51] [I] Outputs format: fp32:CHW
+[11/19/2020-18:17:51] [I] Input build shapes: model
+[11/19/2020-18:17:51] [I] Input calibration shapes: model
+[11/19/2020-18:17:51] [I] === System Options ===
+[11/19/2020-18:17:51] [I] Device: 0
+[11/19/2020-18:17:51] [I] DLACore: 
+[11/19/2020-18:17:51] [I] Plugins:
+[11/19/2020-18:17:51] [I] === Inference Options ===
+[11/19/2020-18:17:51] [I] Batch: 1
+[11/19/2020-18:17:51] [I] Input inference shapes: model
+[11/19/2020-18:17:51] [I] Iterations: 10
+[11/19/2020-18:17:51] [I] Duration: 3s (+ 200ms warm up)
+[11/19/2020-18:17:51] [I] Sleep time: 0ms
+[11/19/2020-18:17:51] [I] Streams: 1
+[11/19/2020-18:17:51] [I] ExposeDMA: Disabled
+[11/19/2020-18:17:51] [I] Spin-wait: Disabled
+[11/19/2020-18:17:51] [I] Multithreading: Disabled
+[11/19/2020-18:17:51] [I] CUDA Graph: Disabled
+[11/19/2020-18:17:51] [I] Skip inference: Disabled
+[11/19/2020-18:17:51] [I] Inputs:
+[11/19/2020-18:17:51] [I] === Reporting Options ===
+[11/19/2020-18:17:51] [I] Verbose: Disabled
+[11/19/2020-18:17:51] [I] Averages: 30 inferences
+[11/19/2020-18:17:51] [I] Percentile: 99
+[11/19/2020-18:17:51] [I] Dump output: Disabled
+[11/19/2020-18:17:51] [I] Profile: Disabled
+[11/19/2020-18:17:51] [I] Export timing to JSON file: 
+[11/19/2020-18:17:51] [I] Export output to JSON file: 
+[11/19/2020-18:17:51] [I] Export profile to JSON file: 
+[11/19/2020-18:17:51] [I] 
+----------------------------------------------------------------
+Input filename:   ./models/0.onnx
+ONNX IR version:  0.0.4
+Opset version:    9
+Producer name:    pytorch
+Producer version: 1.2
+Domain:           
+Model version:    0
+Doc string:       
+----------------------------------------------------------------
+[11/19/2020-18:17:52] [11/19/2020-18:17:52] [I] [TRT] 
+[11/19/2020-18:17:52] [I] [TRT] --------------- Layers running on DLA: 
+[11/19/2020-18:17:52] [I] [TRT] 
+[11/19/2020-18:17:52] [I] [TRT] --------------- Layers running on GPU: 
+[11/19/2020-18:17:52] [I] [TRT] (Unnamed Layer* 0) [Convolution], (Unnamed Layer* 1) [Convolution], (Unnamed Layer* 2) [Convolution] + (Unnamed Layer* 4) [Activation], (Unnamed Layer* 5) [Convolution] + (Unnamed Layer* 7) [ElementWise], (Unnamed Layer* 8) [Convolution] + (Unnamed Layer* 10) [Activation], (Unnamed Layer* 11) [Convolution] + (Unnamed Layer* 13) [Activation], (Unnamed Layer* 14) [Convolution], (Unnamed Layer* 16) [Convolution] + (Unnamed Layer* 18) [Activation], (Unnamed Layer* 19) [Convolution] + (Unnamed Layer* 21) [Activation], (Unnamed Layer* 22) [Reduce], (Unnamed Layer* 23) [Reduce], (Unnamed Layer* 24) [Convolution] + (Unnamed Layer* 25) [Activation], (Unnamed Layer* 26) [Convolution] + (Unnamed Layer* 30) [Activation], PWN((Unnamed Layer* 31) [Constant] + (Unnamed Layer* 32) [Shuffle] + (Unnamed Layer* 33) [ElementWise], (Unnamed Layer* 34) [ElementWise]), (Unnamed Layer* 35) [Convolution], (Unnamed Layer* 37) [Convolution], PWN(PWN(PWN((Unnamed Layer* 39) [Constant] + (Unnamed Layer* 40) [Shuffle] + (Unnamed Layer* 41) [ElementWise], (Unnamed Layer* 42) [Activation]), (Unnamed Layer* 43) [ElementWise]), (Unnamed Layer* 44) [Constant] + (Unnamed Layer* 45) [Shuffle] + (Unnamed Layer* 46) [ElementWise]), (Unnamed Layer* 47) [Convolution], PWN(PWN(PWN((Unnamed Layer* 49) [Constant] + (Unnamed Layer* 50) [Shuffle] + (Unnamed Layer* 51) [ElementWise], (Unnamed Layer* 52) [Activation]), (Unnamed Layer* 53) [ElementWise]), (Unnamed Layer* 54) [Constant] + (Unnamed Layer* 55) [Shuffle] + (Unnamed Layer* 56) [ElementWise]), (Unnamed Layer* 57) [Convolution], (Unnamed Layer* 59) [Convolution], PWN(PWN(PWN((Unnamed Layer* 61) [Constant] + (Unnamed Layer* 62) [Shuffle] + (Unnamed Layer* 63) [ElementWise], (Unnamed Layer* 64) [Activation]), (Unnamed Layer* 65) [ElementWise]), (Unnamed Layer* 66) [Constant] + (Unnamed Layer* 67) [Shuffle] + (Unnamed Layer* 68) [ElementWise]), (Unnamed Layer* 69) [Convolution], PWN(PWN(PWN((Unnamed Layer* 71) [Constant] + (Unnamed Layer* 72) [Shuffle] + (Unnamed Layer* 73) [ElementWise], (Unnamed Layer* 74) [Activation]), (Unnamed Layer* 75) [ElementWise]), (Unnamed Layer* 76) [Constant] + (Unnamed Layer* 77) [Shuffle] + (Unnamed Layer* 78) [ElementWise]), (Unnamed Layer* 79) [Reduce], (Unnamed Layer* 80) [Reduce], (Unnamed Layer* 81) [Convolution] + (Unnamed Layer* 82) [Activation], (Unnamed Layer* 83) [Convolution] + (Unnamed Layer* 87) [Activation], PWN((Unnamed Layer* 88) [Constant] + (Unnamed Layer* 89) [Shuffle] + (Unnamed Layer* 90) [ElementWise], (Unnamed Layer* 91) [ElementWise]), (Unnamed Layer* 92) [Convolution], (Unnamed Layer* 94) [Convolution], PWN(PWN(PWN((Unnamed Layer* 96) [Constant] + (Unnamed Layer* 97) [Shuffle] + (Unnamed Layer* 98) [ElementWise], (Unnamed Layer* 99) [Activation]), (Unnamed Layer* 100) [ElementWise]), (Unnamed Layer* 101) [Constant] + (Unnamed Layer* 102) [Shuffle] + (Unnamed Layer* 103) [ElementWise]), (Unnamed Layer* 104) [Convolution], PWN(PWN(PWN((Unnamed Layer* 106) [Constant] + (Unnamed Layer* 107) [Shuffle] + (Unnamed Layer* 108) [ElementWise], (Unnamed Layer* 109) [Activation]), (Unnamed Layer* 110) [ElementWise]), (Unnamed Layer* 111) [Constant] + (Unnamed Layer* 112) [Shuffle] + (Unnamed Layer* 113) [ElementWise]), (Unnamed Layer* 114) [Reduce], (Unnamed Layer* 115) [Reduce], (Unnamed Layer* 116) [Convolution] + (Unnamed Layer* 117) [Activation], (Unnamed Layer* 118) [Convolution] + (Unnamed Layer* 122) [Activation], PWN((Unnamed Layer* 123) [Constant] + (Unnamed Layer* 124) [Shuffle] + (Unnamed Layer* 125) [ElementWise], (Unnamed Layer* 126) [ElementWise]), (Unnamed Layer* 127) [Convolution] + (Unnamed Layer* 129) [ElementWise], (Unnamed Layer* 130) [Convolution], PWN(PWN(PWN((Unnamed Layer* 132) [Constant] + (Unnamed Layer* 133) [Shuffle] + (Unnamed Layer* 134) [ElementWise], (Unnamed Layer* 135) [Activation]), (Unnamed Layer* 136) [ElementWise]), (Unnamed Layer* 137) [Constant] + (Unnamed Layer* 138) [Shuffle] + (Unnamed Layer* 139) [ElementWise]), (Unnamed Layer* 140) [Convolution], PWN(PWN(PWN((Unnamed Layer* 142) [Constant] + (Unnamed Layer* 143) [Shuffle] + (Unnamed Layer* 144) [ElementWise], (Unnamed Layer* 145) [Activation]), (Unnamed Layer* 146) [ElementWise]), (Unnamed Layer* 147) [Constant] + (Unnamed Layer* 148) [Shuffle] + (Unnamed Layer* 149) [ElementWise]), (Unnamed Layer* 150) [Reduce], (Unnamed Layer* 151) [Reduce], (Unnamed Layer* 152) [Convolution] + (Unnamed Layer* 153) [Activation], (Unnamed Layer* 154) [Convolution] + (Unnamed Layer* 158) [Activation], PWN((Unnamed Layer* 159) [Constant] + (Unnamed Layer* 160) [Shuffle] + (Unnamed Layer* 161) [ElementWise], (Unnamed Layer* 162) [ElementWise]), (Unnamed Layer* 163) [Convolution] + (Unnamed Layer* 165) [ElementWise], (Unnamed Layer* 166) [Convolution], PWN(PWN(PWN((Unnamed Layer* 168) [Constant] + (Unnamed Layer* 169) [Shuffle] + (Unnamed Layer* 170) [ElementWise], (Unnamed Layer* 171) [Activation]), (Unnamed Layer* 172) [ElementWise]), (Unnamed Layer* 173) [Constant] + (Unnamed Layer* 174) [Shuffle] + (Unnamed Layer* 175) [ElementWise]), (Unnamed Layer* 176) [Convolution], PWN(PWN(PWN((Unnamed Layer* 178) [Constant] + (Unnamed Layer* 179) [Shuffle] + (Unnamed Layer* 180) [ElementWise], (Unnamed Layer* 181) [Activation]), (Unnamed Layer* 182) [ElementWise]), (Unnamed Layer* 183) [Constant] + (Unnamed Layer* 184) [Shuffle] + (Unnamed Layer* 185) [ElementWise]), (Unnamed Layer* 186) [Reduce], (Unnamed Layer* 187) [Reduce], (Unnamed Layer* 188) [Convolution] + (Unnamed Layer* 189) [Activation], (Unnamed Layer* 190) [Convolution] + (Unnamed Layer* 194) [Activation], PWN((Unnamed Layer* 195) [Constant] + (Unnamed Layer* 196) [Shuffle] + (Unnamed Layer* 197) [ElementWise], (Unnamed Layer* 198) [ElementWise]), (Unnamed Layer* 199) [Convolution] + (Unnamed Layer* 201) [ElementWise], (Unnamed Layer* 202) [Convolution], PWN(PWN(PWN((Unnamed Layer* 204) [Constant] + (Unnamed Layer* 205) [Shuffle] + (Unnamed Layer* 206) [ElementWise], (Unnamed Layer* 207) [Activation]), (Unnamed Layer* 208) [ElementWise]), (Unnamed Layer* 209) [Constant] + (Unnamed Layer* 210) [Shuffle] + (Unnamed Layer* 211) [ElementWise]), (Unnamed Layer* 212) [Convolution], PWN(PWN(PWN((Unnamed Layer* 214) [Constant] + (Unnamed Layer* 215) [Shuffle] + (Unnamed Layer* 216) [ElementWise], (Unnamed Layer* 217) [Activation]), (Unnamed Layer* 218) [ElementWise]), (Unnamed Layer* 219) [Constant] + (Unnamed Layer* 220) [Shuffle] + (Unnamed Layer* 221) [ElementWise]), (Unnamed Layer* 222) [Reduce], (Unnamed Layer* 223) [Reduce], (Unnamed Layer* 224) [Convolution] + (Unnamed Layer* 225) [Activation], (Unnamed Layer* 226) [Convolution] + (Unnamed Layer* 230) [Activation], PWN((Unnamed Layer* 231) [Constant] + (Unnamed Layer* 232) [Shuffle] + (Unnamed Layer* 233) [ElementWise], (Unnamed Layer* 234) [ElementWise]), (Unnamed Layer* 235) [Convolution] + (Unnamed Layer* 237) [ElementWise], (Unnamed Layer* 238) [Convolution], PWN(PWN(PWN((Unnamed Layer* 240) [Constant] + (Unnamed Layer* 241) [Shuffle] + (Unnamed Layer* 242) [ElementWise], (Unnamed Layer* 243) [Activation]), (Unnamed Layer* 244) [ElementWise]), (Unnamed Layer* 245) [Constant] + (Unnamed Layer* 246) [Shuffle] + (Unnamed Layer* 247) [ElementWise]), (Unnamed Layer* 248) [Convolution], PWN(PWN(PWN((Unnamed Layer* 250) [Constant] + (Unnamed Layer* 251) [Shuffle] + (Unnamed Layer* 252) [ElementWise], (Unnamed Layer* 253) [Activation]), (Unnamed Layer* 254) [ElementWise]), (Unnamed Layer* 255) [Constant] + (Unnamed Layer* 256) [Shuffle] + (Unnamed Layer* 257) [ElementWise]), (Unnamed Layer* 258) [Reduce], (Unnamed Layer* 259) [Reduce], (Unnamed Layer* 260) [Convolution] + (Unnamed Layer* 261) [Activation], (Unnamed Layer* 262) [Convolution] + (Unnamed Layer* 266) [Activation], PWN((Unnamed Layer* 267) [Constant] + (Unnamed Layer* 268) [Shuffle] + (Unnamed Layer* 269) [ElementWise], (Unnamed Layer* 270) [ElementWise]), (Unnamed Layer* 271) [Convolution] + (Unnamed Layer* 273) [ElementWise], (Unnamed Layer* 274) [Convolution], PWN(PWN(PWN((Unnamed Layer* 276) [Constant] + (Unnamed Layer* 277) [Shuffle] + (Unnamed Layer* 278) [ElementWise], (Unnamed Layer* 279) [Activation]), (Unnamed Layer* 280) [ElementWise]), (Unnamed Layer* 281) [Constant] + (Unnamed Layer* 282) [Shuffle] + (Unnamed Layer* 283) [ElementWise]), (Unnamed Layer* 284) [Convolution], PWN(PWN(PWN((Unnamed Layer* 286) [Constant] + (Unnamed Layer* 287) [Shuffle] + (Unnamed Layer* 288) [ElementWise], (Unnamed Layer* 289) [Activation]), (Unnamed Layer* 290) [ElementWise]), (Unnamed Layer* 291) [Constant] + (Unnamed Layer* 292) [Shuffle] + (Unnamed Layer* 293) [ElementWise]), (Unnamed Layer* 294) [Reduce], (Unnamed Layer* 295) [Reduce], (Unnamed Layer* 296) [Convolution] + (Unnamed Layer* 297) [Activation], (Unnamed Layer* 298) [Convolution] + (Unnamed Layer* 302) [Activation], PWN((Unnamed Layer* 303) [Constant] + (Unnamed Layer* 304) [Shuffle] + (Unnamed Layer* 305) [ElementWise], (Unnamed Layer* 306) [ElementWise]), (Unnamed Layer* 307) [Convolution] + (Unnamed Layer* 309) [ElementWise], (Unnamed Layer* 310) [Convolution], PWN(PWN(PWN((Unnamed Layer* 312) [Constant] + (Unnamed Layer* 313) [Shuffle] + (Unnamed Layer* 314) [ElementWise], (Unnamed Layer* 315) [Activation]), (Unnamed Layer* 316) [ElementWise]), (Unnamed Layer* 317) [Constant] + (Unnamed Layer* 318) [Shuffle] + (Unnamed Layer* 319) [ElementWise]), (Unnamed Layer* 320) [Convolution], PWN(PWN(PWN((Unnamed Layer* 322) [Constant] + (Unnamed Layer* 323) [Shuffle] + (Unnamed Layer* 324) [ElementWise], (Unnamed Layer* 325) [Activation]), (Unnamed Layer* 326) [ElementWise]), (Unnamed Layer* 327) [Constant] + (Unnamed Layer* 328) [Shuffle] + (Unnamed Layer* 329) [ElementWise]), (Unnamed Layer* 330) [Reduce], (Unnamed Layer* 331) [Reduce], (Unnamed Layer* 332) [Convolution] + (Unnamed Layer* 333) [Activation], (Unnamed Layer* 334) [Convolution] + (Unnamed Layer* 338) [Activation], PWN((Unnamed Layer* 339) [Constant] + (Unnamed Layer* 340) [Shuffle] + (Unnamed Layer* 341) [ElementWise], (Unnamed Layer* 342) [ElementWise]), (Unnamed Layer* 343) [Convolution] + (Unnamed Layer* 345) [ElementWise], (Unnamed Layer* 346) [Convolution], PWN(PWN(PWN((Unnamed Layer* 348) [Constant] + (Unnamed Layer* 349) [Shuffle] + (Unnamed Layer* 350) [ElementWise], (Unnamed Layer* 351) [Activation]), (Unnamed Layer* 352) [ElementWise]), (Unnamed Layer* 353) [Constant] + (Unnamed Layer* 354) [Shuffle] + (Unnamed Layer* 355) [ElementWise]), (Unnamed Layer* 356) [Convolution], PWN(PWN(PWN((Unnamed Layer* 358) [Constant] + (Unnamed Layer* 359) [Shuffle] + (Unnamed Layer* 360) [ElementWise], (Unnamed Layer* 361) [Activation]), (Unnamed Layer* 362) [ElementWise]), (Unnamed Layer* 363) [Constant] + (Unnamed Layer* 364) [Shuffle] + (Unnamed Layer* 365) [ElementWise]), (Unnamed Layer* 366) [Reduce], (Unnamed Layer* 367) [Reduce], (Unnamed Layer* 368) [Convolution] + (Unnamed Layer* 369) [Activation], (Unnamed Layer* 370) [Convolution] + (Unnamed Layer* 374) [Activation], PWN((Unnamed Layer* 375) [Constant] + (Unnamed Layer* 376) [Shuffle] + (Unnamed Layer* 377) [ElementWise], (Unnamed Layer* 378) [ElementWise]), (Unnamed Layer* 379) [Convolution] + (Unnamed Layer* 381) [ElementWise], (Unnamed Layer* 382) [Convolution], PWN(PWN(PWN((Unnamed Layer* 384) [Constant] + (Unnamed Layer* 385) [Shuffle] + (Unnamed Layer* 386) [ElementWise], (Unnamed Layer* 387) [Activation]), (Unnamed Layer* 388) [ElementWise]), (Unnamed Layer* 389) [Constant] + (Unnamed Layer* 390) [Shuffle] + (Unnamed Layer* 391) [ElementWise]), (Unnamed Layer* 392) [Convolution], PWN(PWN(PWN((Unnamed Layer* 394) [Constant] + (Unnamed Layer* 395) [Shuffle] + (Unnamed Layer* 396) [ElementWise], (Unnamed Layer* 397) [Activation]), (Unnamed Layer* 398) [ElementWise]), (Unnamed Layer* 399) [Constant] + (Unnamed Layer* 400) [Shuffle] + (Unnamed Layer* 401) [ElementWise]), (Unnamed Layer* 402) [Reduce], (Unnamed Layer* 403) [Reduce], (Unnamed Layer* 404) [Convolution] + (Unnamed Layer* 405) [Activation], (Unnamed Layer* 406) [Convolution] + (Unnamed Layer* 410) [Activation], PWN((Unnamed Layer* 411) [Constant] + (Unnamed Layer* 412) [Shuffle] + (Unnamed Layer* 413) [ElementWise], (Unnamed Layer* 414) [ElementWise]), (Unnamed Layer* 415) [Convolution] + (Unnamed Layer* 417) [ElementWise], (Unnamed Layer* 418) [Convolution], PWN(PWN(PWN((Unnamed Layer* 420) [Constant] + (Unnamed Layer* 421) [Shuffle] + (Unnamed Layer* 422) [ElementWise], (Unnamed Layer* 423) [Activation]), (Unnamed Layer* 424) [ElementWise]), (Unnamed Layer* 425) [Constant] + (Unnamed Layer* 426) [Shuffle] + (Unnamed Layer* 427) [ElementWise]), (Unnamed Layer* 428) [Convolution], PWN(PWN(PWN((Unnamed Layer* 430) [Constant] + (Unnamed Layer* 431) [Shuffle] + (Unnamed Layer* 432) [ElementWise], (Unnamed Layer* 433) [Activation]), (Unnamed Layer* 434) [ElementWise]), (Unnamed Layer* 435) [Constant] + (Unnamed Layer* 436) [Shuffle] + (Unnamed Layer* 437) [ElementWise]), (Unnamed Layer* 438) [Reduce], (Unnamed Layer* 439) [Reduce], (Unnamed Layer* 440) [Convolution] + (Unnamed Layer* 441) [Activation], (Unnamed Layer* 442) [Convolution] + (Unnamed Layer* 446) [Activation], PWN((Unnamed Layer* 447) [Constant] + (Unnamed Layer* 448) [Shuffle] + (Unnamed Layer* 449) [ElementWise], (Unnamed Layer* 450) [ElementWise]), (Unnamed Layer* 451) [Convolution], 
+[11/19/2020-18:19:00] [I] [TRT] Detected 1 inputs and 1 output network tensors.
+[11/19/2020-18:19:00] [I] Starting inference threads
+[11/19/2020-18:19:03] [I] Warmup completed 124 queries over 200 ms
+[11/19/2020-18:19:03] [I] Timing trace has 1989 queries over 3.00352 s
+[11/19/2020-18:19:03] [I] Trace averages of 30 runs:
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.5343 ms - Host latency: 1.54973 ms (end to end 1.55429 ms, enqueue 1.50765 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.53882 ms - Host latency: 1.55372 ms (end to end 1.5599 ms, enqueue 1.48698 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.5179 ms - Host latency: 1.53235 ms (end to end 1.53734 ms, enqueue 1.51558 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.52099 ms - Host latency: 1.53579 ms (end to end 1.54122 ms, enqueue 1.49488 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.50388 ms - Host latency: 1.51856 ms (end to end 1.52478 ms, enqueue 1.47903 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.50214 ms - Host latency: 1.51508 ms (end to end 1.52145 ms, enqueue 1.47558 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.50447 ms - Host latency: 1.51919 ms (end to end 1.52424 ms, enqueue 1.47892 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.49762 ms - Host latency: 1.51121 ms (end to end 1.51741 ms, enqueue 1.47169 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.49673 ms - Host latency: 1.51031 ms (end to end 1.51736 ms, enqueue 1.47189 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.50188 ms - Host latency: 1.51518 ms (end to end 1.52212 ms, enqueue 1.47637 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.48393 ms - Host latency: 1.49599 ms (end to end 1.51846 ms, enqueue 1.47371 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.49576 ms - Host latency: 1.5081 ms (end to end 1.51665 ms, enqueue 1.47209 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.50157 ms - Host latency: 1.51385 ms (end to end 1.52159 ms, enqueue 1.47805 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.50097 ms - Host latency: 1.51182 ms (end to end 1.52268 ms, enqueue 1.47834 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.48903 ms - Host latency: 1.49958 ms (end to end 1.50936 ms, enqueue 1.4665 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.50051 ms - Host latency: 1.51247 ms (end to end 1.52092 ms, enqueue 1.47732 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.49437 ms - Host latency: 1.50608 ms (end to end 1.51538 ms, enqueue 1.47194 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.4892 ms - Host latency: 1.50017 ms (end to end 1.51018 ms, enqueue 1.4674 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.50157 ms - Host latency: 1.51464 ms (end to end 1.5232 ms, enqueue 1.47777 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.49272 ms - Host latency: 1.50436 ms (end to end 1.51296 ms, enqueue 1.46774 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.49209 ms - Host latency: 1.50418 ms (end to end 1.51329 ms, enqueue 1.46937 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.49467 ms - Host latency: 1.5057 ms (end to end 1.51552 ms, enqueue 1.47215 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.48789 ms - Host latency: 1.49887 ms (end to end 1.50957 ms, enqueue 1.46617 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.49292 ms - Host latency: 1.50522 ms (end to end 1.51452 ms, enqueue 1.47023 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.49086 ms - Host latency: 1.50297 ms (end to end 1.5121 ms, enqueue 1.46768 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.49008 ms - Host latency: 1.50231 ms (end to end 1.51116 ms, enqueue 1.46686 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.49121 ms - Host latency: 1.50178 ms (end to end 1.5111 ms, enqueue 1.46818 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.49457 ms - Host latency: 1.50642 ms (end to end 1.51508 ms, enqueue 1.47113 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.4918 ms - Host latency: 1.50179 ms (end to end 1.5112 ms, enqueue 1.46905 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.5008 ms - Host latency: 1.51152 ms (end to end 1.52149 ms, enqueue 1.479 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.50035 ms - Host latency: 1.51261 ms (end to end 1.52152 ms, enqueue 1.47742 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.4923 ms - Host latency: 1.5031 ms (end to end 1.513 ms, enqueue 1.47135 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.48437 ms - Host latency: 1.49457 ms (end to end 1.50437 ms, enqueue 1.46263 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.48223 ms - Host latency: 1.4939 ms (end to end 1.50332 ms, enqueue 1.46076 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.47775 ms - Host latency: 1.48979 ms (end to end 1.4992 ms, enqueue 1.45563 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.47675 ms - Host latency: 1.48709 ms (end to end 1.49686 ms, enqueue 1.45669 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.48146 ms - Host latency: 1.49257 ms (end to end 1.501 ms, enqueue 1.45933 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.48249 ms - Host latency: 1.4924 ms (end to end 1.5008 ms, enqueue 1.4585 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.47888 ms - Host latency: 1.49035 ms (end to end 1.49905 ms, enqueue 1.45707 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.47895 ms - Host latency: 1.48926 ms (end to end 1.49756 ms, enqueue 1.45765 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.49054 ms - Host latency: 1.50095 ms (end to end 1.51036 ms, enqueue 1.46908 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.4838 ms - Host latency: 1.49457 ms (end to end 1.50249 ms, enqueue 1.46161 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.47418 ms - Host latency: 1.48595 ms (end to end 1.4951 ms, enqueue 1.4526 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.48941 ms - Host latency: 1.49995 ms (end to end 1.50972 ms, enqueue 1.46819 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.4782 ms - Host latency: 1.48847 ms (end to end 1.49827 ms, enqueue 1.45731 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.47598 ms - Host latency: 1.48612 ms (end to end 1.49539 ms, enqueue 1.45439 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.48342 ms - Host latency: 1.49377 ms (end to end 1.50358 ms, enqueue 1.46174 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.47276 ms - Host latency: 1.48308 ms (end to end 1.49275 ms, enqueue 1.45161 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.47853 ms - Host latency: 1.48926 ms (end to end 1.49822 ms, enqueue 1.45583 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.47308 ms - Host latency: 1.48313 ms (end to end 1.49278 ms, enqueue 1.45146 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.4718 ms - Host latency: 1.48168 ms (end to end 1.4902 ms, enqueue 1.44906 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.47909 ms - Host latency: 1.48962 ms (end to end 1.49905 ms, enqueue 1.45715 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.47828 ms - Host latency: 1.48849 ms (end to end 1.49816 ms, enqueue 1.45656 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.47421 ms - Host latency: 1.4849 ms (end to end 1.49417 ms, enqueue 1.45245 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.50634 ms - Host latency: 1.5165 ms (end to end 1.52638 ms, enqueue 1.45364 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.45189 ms - Host latency: 1.4627 ms (end to end 1.47135 ms, enqueue 1.45959 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.4842 ms - Host latency: 1.49547 ms (end to end 1.50416 ms, enqueue 1.46183 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.47463 ms - Host latency: 1.48538 ms (end to end 1.49451 ms, enqueue 1.45378 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.4738 ms - Host latency: 1.48418 ms (end to end 1.49236 ms, enqueue 1.45219 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.47685 ms - Host latency: 1.48582 ms (end to end 1.49565 ms, enqueue 1.4568 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.47111 ms - Host latency: 1.48167 ms (end to end 1.49044 ms, enqueue 1.44942 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.47311 ms - Host latency: 1.48215 ms (end to end 1.49141 ms, enqueue 1.4526 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.4755 ms - Host latency: 1.48482 ms (end to end 1.49384 ms, enqueue 1.45457 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.47624 ms - Host latency: 1.48516 ms (end to end 1.52183 ms, enqueue 1.45792 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.45139 ms - Host latency: 1.46046 ms (end to end 1.46912 ms, enqueue 1.4547 ms)
+[11/19/2020-18:19:03] [I] Average on 30 runs - GPU latency: 1.47234 ms - Host latency: 1.48201 ms (end to end 1.49027 ms, enqueue 1.45158 ms)
+[11/19/2020-18:19:03] [I] Host Latency
+[11/19/2020-18:19:03] [I] min: 1.31909 ms (end to end 1.32642 ms)
+[11/19/2020-18:19:03] [I] max: 2.24939 ms (end to end 2.25891 ms)
+[11/19/2020-18:19:03] [I] mean: 1.49948 ms (end to end 1.50878 ms)
+[11/19/2020-18:19:03] [I] median: 1.49536 ms (end to end 1.50394 ms)
+[11/19/2020-18:19:03] [I] percentile: 1.61264 ms at 99% (end to end 1.62512 ms at 99%)
+[11/19/2020-18:19:03] [I] throughput: 662.223 qps
+[11/19/2020-18:19:03] [I] walltime: 3.00352 s
+[11/19/2020-18:19:03] [I] Enqueue Time
+[11/19/2020-18:19:03] [I] min: 1.39795 ms
+[11/19/2020-18:19:03] [I] max: 1.76831 ms
+[11/19/2020-18:19:03] [I] median: 1.46204 ms
+[11/19/2020-18:19:03] [I] GPU Compute
+[11/19/2020-18:19:03] [I] min: 1.31128 ms
+[11/19/2020-18:19:03] [I] max: 2.24142 ms
+[11/19/2020-18:19:03] [I] mean: 1.48814 ms
+[11/19/2020-18:19:03] [I] median: 1.48364 ms
+[11/19/2020-18:19:03] [I] percentile: 1.60294 ms at 99%
+[11/19/2020-18:19:03] [I] total compute time: 2.9599 s
+&&&& PASSED TensorRT.trtexec # trtexec --onnx=./models/0.onnx --avgRuns=30
+'

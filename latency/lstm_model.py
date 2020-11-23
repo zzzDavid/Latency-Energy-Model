@@ -7,33 +7,56 @@ import torch.nn.utils.rnn as rnn_utils
 from torch import optim
 from sklearn import linear_model
 from sklearn.neural_network import MLPRegressor
+import math
+from sklearn.metrics import mean_squared_error
+from read_data import read_data
 
-from aw_nas.hardware.utils import Prim
+latency_path = '../data/latency_results_cpu_gpu/latency_table_b64_cpu'
+
+# def reg_data_to_feature(dataset, table=None):
+#     block_sums = dataset[:, 0].reshape(-1, 1)
+#     prims = dataset[:, 2]
+#     for data in prims:
+#         for p in data:
+#             p.pop("performances", None)
+#     avg_block_sums = block_sums if table is None else np.array(
+#         [sum([table[Prim(**p)] for p in data])
+#          for data in prims]).reshape(-1, 1)
+#     overall = dataset[:, 1]
+#     num_prims = np.array([len(x) for x in dataset[:, 2]]).reshape(-1, 1)
+#     return np.concatenate([num_prims, avg_block_sums], 1), overall
+#     # return avg_block_sums, overall
+
+def build_dataset():
+    list_of_dict = read_data(latency_path)
+    X = list()
+    Y = list()
+    for datum in list_of_dict:
+        Y.append(datum['overall'])
+        # let's build an input feature
+        x_feature = list()
+        for key, value in datum.items():
+            if key == 'block_latency_sum' or key == 'overall': continue
+            latency = value
+            if 'firstconv' in key or 'feature' in key:
+                kernel_size = 1
+            else:
+                kernel_size = int(key.split('_')[1].split('x')[1])
+            input_dims = [int(v) for v in key.split('_')[-2].replace('I(','').replace(')','').split(',')]
+            output_dims = [int(v) for v in key.split('_')[-1].replace('O(','').replace(')','').split(',')]
+            x_feature.append([latency, kernel_size, *input_dims, *output_dims])
+        X.append(x_feature)
+    return X, Y
 
 
-def reg_data_to_feature(dataset, table=None):
-    block_sums = dataset[:, 0].reshape(-1, 1)
-    prims = dataset[:, 2]
-    for data in prims:
-        for p in data:
-            p.pop("performances", None)
-    avg_block_sums = block_sums if table is None else np.array(
-        [sum([table[Prim(**p)] for p in data])
-         for data in prims]).reshape(-1, 1)
-    overall = dataset[:, 1]
-    num_prims = np.array([len(x) for x in dataset[:, 2]]).reshape(-1, 1)
-    return np.concatenate([num_prims, avg_block_sums], 1), overall
-    # return avg_block_sums, overall
-
-
-def rnn_data_to_feature(dataset, table=None):
-    prims = dataset[:, 2]
-    block_latency = [[p.pop("performances")["latency"] for p in data]
-                     for data in prims]
-    if table is not None:
-        block_latency = [[table[Prim(**p)] for p in data] for data in prims]
-    overall = dataset[:, 1]
-    return block_latency, overall
+# def rnn_data_to_feature(dataset, table=None):
+#     prims = dataset[:, 2]
+#     block_latency = [[p.pop("performances")["latency"] for p in data]
+#                      for data in prims]
+#     if table is not None:
+#         block_latency = [[table[Prim(**p)] for p in data] for data in prims]
+#     overall = dataset[:, 1]
+#     return block_latency, overall
 
 
 class LSTM(nn.Module):
@@ -81,38 +104,36 @@ class LSTM(nn.Module):
         return self
 
 
-def train_and_test(model, data_to_feature_fn, **kwargs):
-    with open("samples.pkl", "rb") as fr:
-        samples = pickle.load(fr)
-
-    with open("test_model.pkl", "rb") as fr:
-        table = pickle.load(fr)["table"]
-        table = {Prim(**k): v for k, v in table}
-
-    train_feature, train_y = data_to_feature_fn(samples["train"], None)
-    model.fit(train_feature, train_y, **kwargs)
-    test_feature, test_y = data_to_feature_fn(samples["test"], table)
+def train(model, epoch=1000):
+    X, Y = build_dataset()
+    length = int(len(X) * 0.8)
+    train_feature, train_y = X[:length], Y[:length]
+    test_feature, test_y = X[length:], Y[length:]
+    model.fit(train_feature, train_y, epochs=epoch)
     pred_y = model.predict(test_feature)
-    err = (pred_y - test_y) / test_y
-    print("%e, %e, %e" % (err.max(), err.mean(), err.std()))
+    # report rMSE
+    mse = mean_squared_error(test_y, pred_y)
+    rmse = math.sqrt(mse)     
+    print(f'test set prediction rMSE = {rmse}')
+    torch.save(model.state_dict(), './lstm_weights.pth')
+    print("saved weights")
+
+# def reg_main():
+#     model = linear_model.LinearRegression()
+#     train_and_test(model, reg_data_to_feature)
 
 
-def reg_main():
-    model = linear_model.LinearRegression()
-    train_and_test(model, reg_data_to_feature)
-
-
-def mlp_main():
-    clf = MLPRegressor(solver='lbfgs',
-                       alpha=1e-4,
-                       hidden_layer_sizes=(10, 10, 10),
-                       random_state=1)
-    train_and_test(clf, reg_data_to_feature)
+# def mlp_main():
+#     clf = MLPRegressor(solver='lbfgs',
+#                        alpha=1e-4,
+#                        hidden_layer_sizes=(10, 10, 10),
+#                        random_state=1)
+#     train_and_test(clf, reg_data_to_feature)
 
 
 def lstm_main():
     model = LSTM(1, 20, 1, device="cuda")
-    train_and_test(model, rnn_data_to_feature)
+    train(model)
 
 
 if __name__ == "__main__":

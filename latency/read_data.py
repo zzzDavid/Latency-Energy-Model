@@ -57,13 +57,23 @@ def read_data(data_path):
         runs = glob(os.path.join(sample, '*.json'))
         if len(runs) == 0: continue
         datum = dict()
+
+        block_latency_sum_avg = sum([read_json(run)['block_latency_sum'] for run in runs])
+        block_latency_sum_avg /= len(runs)
+
         for run in runs:
             jsonData = read_json(run)
+            block_latency_sum = jsonData['block_latency_sum']
+            overall_latency = jsonData['overall']
+            # 去除数据不正常或者波动过大的点
+            if block_latency_sum < overall_latency: continue
+            if abs(block_latency_sum - block_latency_sum_avg) > (block_latency_sum_avg * 0.1): continue
             for key, value in jsonData.items():
                 if key in datum:
                     datum[key] += value
                 else:
                     datum[key] = value
+        if len(datum) == 0: continue
         # average over runs
         for key, value in datum.items():
             datum[key] = value / len(runs)

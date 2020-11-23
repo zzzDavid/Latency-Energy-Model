@@ -10,6 +10,8 @@ from sklearn.neural_network import MLPRegressor
 import math
 from sklearn.metrics import mean_squared_error
 from read_data import read_data
+import os
+from draw import draw
 
 latency_path = '../data/latency_results_cpu_gpu/latency_table_b64_cpu'
 
@@ -49,14 +51,7 @@ def build_dataset():
     return X, Y
 
 
-# def rnn_data_to_feature(dataset, table=None):
-#     prims = dataset[:, 2]
-#     block_latency = [[p.pop("performances")["latency"] for p in data]
-#                      for data in prims]
-#     if table is not None:
-#         block_latency = [[table[Prim(**p)] for p in data] for data in prims]
-#     overall = dataset[:, 1]
-#     return block_latency, overall
+
 
 
 class LSTM(nn.Module):
@@ -94,7 +89,7 @@ class LSTM(nn.Module):
                 label = train_y[j * bs: (j + 1) * bs]
                 optimizer.zero_grad()
                 pred = self.forward(seq, bs=bs)
-                loss = loss_function(pred, torch.tensor(label.astype(np.float32)).to(pred.device))
+                loss = loss_function(pred, torch.tensor(label).to(pred.device))
                 loss.backward()
                 optimizer.step()
 
@@ -109,6 +104,8 @@ def train(model, epoch=1000):
     length = int(len(X) * 0.8)
     train_feature, train_y = X[:length], Y[:length]
     test_feature, test_y = X[length:], Y[length:]
+    if os.path.exists('./lstm_weights.pth'):
+        model.load_state_dict(torch.load('./lstm_weights.pth'))
     model.fit(train_feature, train_y, epochs=epoch)
     pred_y = model.predict(test_feature)
     # report rMSE
@@ -118,23 +115,38 @@ def train(model, epoch=1000):
     torch.save(model.state_dict(), './lstm_weights.pth')
     print("saved weights")
 
-# def reg_main():
-#     model = linear_model.LinearRegression()
-#     train_and_test(model, reg_data_to_feature)
 
+def test(model):
+    model.load_state_dict(torch.load('./lstm_weights.pth'))
+    print("loaded weights")
 
-# def mlp_main():
-#     clf = MLPRegressor(solver='lbfgs',
-#                        alpha=1e-4,
-#                        hidden_layer_sizes=(10, 10, 10),
-#                        random_state=1)
-#     train_and_test(clf, reg_data_to_feature)
+    X, Y = build_dataset()
+    
+    length = int((len(X) * 0.8))
+    test_y = list()
+    test_y_pred = list()
+    simple_sum = list()
+    for x, gt_y in zip(X[length:], Y[length:]):
+        pred_y = model.predict([x])
+        print(f"predicted = {pred_y}, measured = {gt_y}")
+        test_y_pred.append(pred_y[0])
+        test_y.append(gt_y)
+        simple_sum.append(sum(x[0]))
+    # report rMSE
+    mse = mean_squared_error(test_y, test_y_pred)
+    rmse = math.sqrt(mse)    
+    print(f'prediction rMSE = {rmse}')
+    mse = mean_squared_error(test_y, simple_sum)
+    rmse = math.sqrt(mse) 
+    print(f'directly add rMSE = {rmse}')
+    
+    draw(test_y, test_y_pred, title='LSTM latency model', path='./lstm.png')
 
 
 def lstm_main():
-    model = LSTM(1, 20, 1, device="cuda")
-    train(model)
-
+    model = LSTM(1, 100, 1, device="cuda")
+    train(model, epoch=10000)
+    test(model)
 
 if __name__ == "__main__":
     lstm_main()

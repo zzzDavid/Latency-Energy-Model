@@ -13,7 +13,7 @@ from draw import draw
 
 from read_data import read_data
 
-latency_path = '../data/latency_results_cpu_gpu/latency_table_b64_cpu'
+latency_path = '../data/latency_results_cpu_gpu/latency_table_b16_cuda'
 
 
 # prepare data
@@ -55,7 +55,7 @@ test_y_pred = model.predict(test_x)
 # print('Single Factor: r2_score =' + str(r2score))
 mse_ori = mean_squared_error(test_y,test_x)
 mse_pred = mean_squared_error(test_y,test_y_pred)
-draw(test_y, test_y_pred, title='Linear Regression 1-input', path='linear1.png')
+draw(test_y, test_y_pred, test_x, title='Linear Regression (Latency)', path='linear.pdf')
 
 
 # t = np.arange(len(test_x))
@@ -93,4 +93,4 @@ print('Single Factor: original rMSE =' + str(math.sqrt(mse_ori)) + ' predict rMS
 # plt.plot(t, test_y, 'r-', linewidth=2, label='真实数据')
 # plt.plot(t, test_y_pred, 'go-', linewidth=2, label='预测数据')
 # plt.show()
-draw(test_y, test_y_pred, title='Linear Regression 2-input', path='./linear2.png')
+# draw(test_y, test_y_pred, title='Linear Regression (Latency)', path='./linear2.pdf')

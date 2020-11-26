@@ -12,7 +12,7 @@ from sklearn.metrics import mean_squared_error
 from read_data import read_data
 from draw import draw
 
-latency_path = '../data/latency_results_cpu_gpu/latency_table_b64_cpu'
+latency_path = '../data/latency_results_cpu_gpu/latency_table_b16_cuda'
 
 
 def build_dataset():
@@ -49,7 +49,9 @@ def train(model):
     rmse = math.sqrt(mse)     
     print(f'test set prediction rMSE = {rmse}')
 
-    draw(test_y, pred_y, title='MLP latency model', path='mlp.png')
+    test_y_add = [sum(v) for v in test_feature]
+
+    draw(test_y, pred_y, test_y_add, title='MLP (Latency)', path='mlp.pdf')
 
     
 

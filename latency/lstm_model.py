@@ -13,21 +13,9 @@ from read_data import read_data
 import os
 from draw import draw
 
-latency_path = '../data/latency_results_cpu_gpu/latency_table_b64_cpu'
+latency_path = '../data/latency_results_cpu_gpu/latency_table_b16_cuda'
 
-# def reg_data_to_feature(dataset, table=None):
-#     block_sums = dataset[:, 0].reshape(-1, 1)
-#     prims = dataset[:, 2]
-#     for data in prims:
-#         for p in data:
-#             p.pop("performances", None)
-#     avg_block_sums = block_sums if table is None else np.array(
-#         [sum([table[Prim(**p)] for p in data])
-#          for data in prims]).reshape(-1, 1)
-#     overall = dataset[:, 1]
-#     num_prims = np.array([len(x) for x in dataset[:, 2]]).reshape(-1, 1)
-#     return np.concatenate([num_prims, avg_block_sums], 1), overall
-#     # return avg_block_sums, overall
+
 
 def build_dataset():
     list_of_dict = read_data(latency_path)
@@ -46,10 +34,9 @@ def build_dataset():
                 kernel_size = int(key.split('_')[1].split('x')[1])
             input_dims = [int(v) for v in key.split('_')[-2].replace('I(','').replace(')','').split(',')]
             output_dims = [int(v) for v in key.split('_')[-1].replace('O(','').replace(')','').split(',')]
-            x_feature.append([latency, kernel_size, *input_dims, *output_dims])
+            x_feature.append([latency, kernel_size, *input_dims])
         X.append(x_feature)
     return X, Y
-
 
 
 
@@ -80,7 +67,7 @@ class LSTM(nn.Module):
     def predict(self, input_seqs):
         return self.forward(input_seqs, bs=len(input_seqs)).cpu().detach().numpy()
 
-    def fit(self, train_X, train_y, epochs=200, bs=1024):
+    def fit(self, train_X, train_y, epochs=200, bs=128):
         loss_function = nn.MSELoss()
         optimizer = torch.optim.Adam(self.parameters(), lr=0.001)
         for i in range(epochs):
@@ -131,7 +118,7 @@ def test(model):
         print(f"predicted = {pred_y}, measured = {gt_y}")
         test_y_pred.append(pred_y[0])
         test_y.append(gt_y)
-        simple_sum.append(sum(x[0]))
+        simple_sum.append(sum( [b[0] for b in x] ))
     # report rMSE
     mse = mean_squared_error(test_y, test_y_pred)
     rmse = math.sqrt(mse)    
@@ -140,12 +127,12 @@ def test(model):
     rmse = math.sqrt(mse) 
     print(f'directly add rMSE = {rmse}')
     
-    draw(test_y, test_y_pred, title='LSTM latency model', path='./lstm.png')
+    draw(test_y, test_y_pred, simple_sum, title='LSTM (Latency)', path='./lstm.pdf')
 
 
 def lstm_main():
-    model = LSTM(1, 100, 1, device="cuda")
-    train(model, epoch=10000)
+    model = LSTM(1, 20, 1, device="cuda")
+    # train(model, epoch=100)
     test(model)
 
 if __name__ == "__main__":

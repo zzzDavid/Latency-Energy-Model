@@ -45,7 +45,9 @@ def train(model):
     rmse = math.sqrt(mse)     
     print(f'test set prediction rMSE = {rmse}')
 
-    draw(test_y, pred_y, title='MLP latency model', path='mlp.png')
+    test_y_add = [sum(v) for v in test_feature]
+
+    draw(test_y, pred_y, test_y_add, title='MLP (Energy)', path='mlp.pdf')
 
     
 

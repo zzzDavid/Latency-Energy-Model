@@ -93,7 +93,7 @@ def test(model):
         print(f"predicted = {pred_y}, measured = {gt_y}")
         test_y_pred.append(pred_y[0])
         test_y.append(gt_y)
-        simple_sum.append(sum(x[0]))
+        simple_sum.append(sum([b[0] for b in x]))
     # report rMSE
     mse = mean_squared_error(test_y, test_y_pred)
     rmse = math.sqrt(mse)    
@@ -102,12 +102,12 @@ def test(model):
     rmse = math.sqrt(mse) 
     print(f'directly add rMSE = {rmse}')
     
-    draw(test_y, test_y_pred, title='LSTM latency model', path='./lstm.png')
+    draw(test_y, test_y_pred, simple_sum, title='LSTM (Energy)', path='./lstm.pdf')
 
 
 def lstm_main():
     model = LSTM(1, 100, 1, device="cuda")
-    train(model, epoch=10000)
+    # train(model, epoch=10000)
     test(model)
 
 if __name__ == "__main__":
